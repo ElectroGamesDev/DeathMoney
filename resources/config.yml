@@ -1,0 +1,8 @@
+# How much money will the player lose when they die? Type Options: "all", "half", "percent", "amount"
+# all = Removes all of the Players Money when they die
+# half = Removes half of the Player Money when they die  
+# percent = Removes a percentage of the players money. Example, If Money-Loss = 25, 25% of the player money will be removed
+# amount = Removed the specified amount of money. Example, If Money-Loss = 25, the player will lost $25.
+Type: percent
+# Leave Money-Loss: at 0 if Type is set to "all" or "half"
+Money-Loss: 25
