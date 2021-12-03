@@ -5,22 +5,19 @@ namespace Electro\DeathMoney;
 use onebone\economyapi\EconomyAPI;
 
 use pocketmine\event\entity\EntityDeathEvent;
-use pocketmine\Player;
+use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
-use pocketmine\utils\Config;
 
 class DeathMoney extends PluginBase implements Listener{
 
-    public $player;
-
-    public function onEnable()
+    public function onEnable() : void
     {
         $this->saveDefaultConfig();
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
 
-    public function onDeath(EntityDeathEvent $event)
+    public function onDeath(EntityDeathEvent $event) : bool
     {
         $player = $event->getEntity();
         if (!$player instanceof Player){
@@ -43,8 +40,6 @@ class DeathMoney extends PluginBase implements Listener{
             $player->sendMessage("§aYou have died and lost $" . ((double)$this->getConfig()->get("Money-Loss") / 100) * $playerMoney);
             EconomyAPI::getInstance()->reduceMoney($player, ((double)$this->getConfig()->get("Money-Loss") / 100) * $playerMoney);
         }
+        return true;
     }
-
-
-
 }
