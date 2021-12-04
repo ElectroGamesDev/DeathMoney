@@ -17,11 +17,11 @@ class DeathMoney extends PluginBase implements Listener{
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
 
-    public function onDeath(EntityDeathEvent $event) : bool
+    public function onDeath(EntityDeathEvent $event) : void
     {
         $player = $event->getEntity();
         if (!$player instanceof Player){
-            return true;
+            return;
         }
         $playerMoney = EconomyAPI::getInstance()->myMoney($player);
         if ($this->getConfig()->get("Type") == "all"){
@@ -40,6 +40,5 @@ class DeathMoney extends PluginBase implements Listener{
             $player->sendMessage("§aYou have died and lost $" . ((double)$this->getConfig()->get("Money-Loss") / 100) * $playerMoney);
             EconomyAPI::getInstance()->reduceMoney($player, ((double)$this->getConfig()->get("Money-Loss") / 100) * $playerMoney);
         }
-        return true;
     }
 }
