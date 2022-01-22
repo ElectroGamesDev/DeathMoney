@@ -65,9 +65,7 @@ class DeathMoney extends PluginBase implements Listener{
 
     public function naturalMoneyLoss($player, $playerMoney)
     {
-        echo("XD");
         if (!$this->getConfig()->get("LoseMoneyNaturally")) return;
-        echo("lmaO");
         if ($this->getConfig()->get("Type") == "all"){
             $player->sendMessage("§aYou have died and lost $" . $playerMoney);
             EconomyAPI::getInstance()->reduceMoney($player, $playerMoney);
