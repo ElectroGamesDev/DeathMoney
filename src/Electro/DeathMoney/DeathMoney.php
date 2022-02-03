@@ -24,7 +24,11 @@ class DeathMoney extends PluginBase implements Listener{
         if(!$player->getLastDamageCause() instanceof EntityDamageByEntityEvent) return;
         $playerMoney = EconomyAPI::getInstance()->myMoney($player);
         $damager = $player->getLastDamageCause()->getDamager();
-        if (!$damager instanceof Player) $this->naturalMoneyLoss($player, $playerMoney);
+        if (!$damager instanceof Player)
+        {
+            $this->naturalMoneyLoss($player, $playerMoney);
+            return;
+        }
         if ($this->getConfig()->get("Type") == "all"){
             if ($this->getConfig()->get("KillerGainMoney"))
             {
